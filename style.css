@@ -1,0 +1,12 @@
+.cover {
+    width: 10rem !important;
+}
+
+.cover-full {
+    width: 20rem;
+}
+
+#container {
+    display: flex;
+    flex-direction: horizontal;
+}
