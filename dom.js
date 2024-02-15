@@ -82,7 +82,7 @@ BMARVEL.addEventListener('click', async () => {
 
 BDC.addEventListener('click', async () => {
     const heroesData = await getData(`${serverUrl}dc`);
-    showCard(heroesData, contenedor)
+    showCard(heroesData, contenedor, serverUrl)
 })
 
 formulario.addEventListener("submit", (e) => {

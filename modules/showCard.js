@@ -1,4 +1,6 @@
-export const showCard = (arr, cont) => {
+import { deleteComic } from "./delete.js";
+
+export const showCard = (arr, cont, url) => {
     cont.innerHTML = ``
 
     arr.forEach((item, index) => {
@@ -25,11 +27,12 @@ export const showCard = (arr, cont) => {
         const deleteButton = cardElement.querySelector('.btn-delete');
 
         editButton.addEventListener('click', () => {
-            console.log("Botón Editar" + item.id)
+            localStorage.setItem("idSeleccionado", item.id)
+            window.location.href = '../pages/edit.html'
         })
 
         deleteButton.addEventListener('click', () => {
-            console.log("Botón Delete" + item.id)
+            deleteComic(url, item)
         })
 
         cont.appendChild(cardElement);
