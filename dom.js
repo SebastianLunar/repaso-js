@@ -1,10 +1,32 @@
+import { filtrar } from "./modules/filtrar.js";
+import { getData } from "./modules/get.js";
+import { addComic } from "./modules/post.js";
+import { showCard } from "./modules/showCard.js";
+
+let contenedor = document.getElementById('container')
+let imagen = document.getElementById('imagen1')
+let formulario = document.getElementById('form')
+const productos = [
+    {
+        id: 1,
+        nombre: 'Camisa',
+        precio: 25
+    },
+    { id: 2, nombre: 'Pantalón', precio: 60 },
+    { id: 3, nombre: 'Zapatos', precio: 80 },
+    { id: 4, nombre: 'Bufanda', precio: 15 },
+    { id: 5, nombre: 'Sombrero', precio: 50 },
+    { id: 6, nombre: 'Medias', precio: 30 },
+    { id: 7, nombre: 'Gorra', precio: 28 }
+];
+const serverUrl = 'http://localhost:3000/';
+const BMARVEL = document.getElementById('marvel-btn');
+const BDC = document.getElementById('dc-btn');
+
 // document.addEventListener('DOMContentLoaded', () => {
 //     let imageInput = prompt("Ingrese link de la imagen");
 //     imagen.setAttribute('src', imageInput)
 
-import { filtrar } from "./modules/filtrar.js";
-import { getData } from "./modules/get.js";
-import { showCard } from "./modules/showCard.js";
 
 //     imagen.style.width = '15rem';
 
@@ -28,26 +50,6 @@ import { showCard } from "./modules/showCard.js";
 //     }, 3000);
 // })
 
-let contenedor = document.getElementById('container')
-let imagen = document.getElementById('imagen1')
-let formulario = document.getElementById('form')
-
-const productos = [
-    { 
-        id: 1,
-        nombre: 'Camisa',
-        precio: 25
-    },
-    { id: 2, nombre: 'Pantalón', precio: 60 },
-    { id: 3, nombre: 'Zapatos', precio: 80 },
-    { id: 4, nombre: 'Bufanda', precio: 15 },
-    { id: 5, nombre: 'Sombrero', precio: 50 },
-    { id: 6, nombre: 'Medias', precio: 30 },
-    { id: 7, nombre: 'Gorra', precio: 28 }
-];
-
-// console.log(productos[2].nombre)
-
 document.addEventListener('DOMContentLoaded', () => {
     productos.forEach((item, index) => {
         // console.log(item, index);
@@ -62,12 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 })
 
-// formulario.addEventListener('submit', (e) => {
-//     e.preventDefault();
-//     const value = document.getElementById('input1').value;
-//     filtrar(productos, value, contenedor);
-// })
-
 // contenedor.addEventListener('click', () => {
 //     console.log(localStorage.clear());  
 // })
@@ -79,18 +75,32 @@ document.addEventListener('DOMContentLoaded', () => {
 //     console.error('Ocurrió un error:', error.message);
 // }
 
-
-const serverUrl = 'http://localhost:3000/';
-const BMARVEL = document.getElementById('marvel-btn');
-const BDC = document.getElementById('dc-btn');
-
 BMARVEL.addEventListener('click', async () => {
     const heroesData = await getData(`${serverUrl}marvel`);
-    console.log(heroesData);
-    showCard(heroesData, contenedor)
+    showCard(heroesData, contenedor, serverUrl)
 })
 
 BDC.addEventListener('click', async () => {
     const heroesData = await getData(`${serverUrl}dc`);
     showCard(heroesData, contenedor)
+})
+
+formulario.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let nombre = document.getElementById('input-nombre').value;
+    let imagen = document.getElementById('input-imagen').value;
+    let categoria = document.getElementById('input-categoria').value;
+    let descripcion = document.getElementById('input-descripcion').value;
+    let año = document.getElementById('input-año').value;
+
+    const nuevaCarta = {
+        id: crypto.randomUUID(),
+        nombre,
+        anio: año,
+        historia: descripcion,
+        imagen,
+        categoria
+    }
+
+    addComic(serverUrl, nuevaCarta);
 })

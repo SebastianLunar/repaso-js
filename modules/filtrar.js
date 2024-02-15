@@ -1,10 +1,9 @@
-export const filtrar = (arr, valor, caja) => {
-    const asequibles = arr.filter((item) => item.precio <= Number(valor))
-
-    caja.innerHTML = ``
+export const filtrar = (...props) => {
+    const asequibles = props[0].filter((item) => item.precio <= Number(props[1]))
+    props[2].innerHTML = ``
 
     asequibles.forEach((producto) => {
-        caja.innerHTML += `
+        props[2].innerHTML += `
             <div class="card" style="width: 18rem; margin: 1rem" id=${producto.id}>
                 <div class="card-body mx-auto">
                     <h5 class="card-title">${producto.nombre}</h5>
