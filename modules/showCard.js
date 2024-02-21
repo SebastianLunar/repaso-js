@@ -6,7 +6,7 @@ export const showCard = (arr, cont, url) => {
     arr.forEach((item, index) => {
         const cardElement = document.createElement('div');
         cardElement.className = "card";
-        cardElement.style = "width: 18rem;"
+        cardElement.style = "width: 18rem"
 
         cardElement.innerHTML += `
             <img src=${item.imagen} class="card-img-top cover" alt="...">
@@ -28,6 +28,7 @@ export const showCard = (arr, cont, url) => {
 
         editButton.addEventListener('click', () => {
             localStorage.setItem("idSeleccionado", item.id)
+            localStorage.setItem("seleccionados", JSON.stringify(item))
             window.location.href = '../pages/edit.html'
         })
 

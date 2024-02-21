@@ -5,12 +5,19 @@ import { showCard } from "./modules/showCard.js";
 const contenedor = document.getElementById('container')
 const formulario = document.getElementById('form');
 const seleccionado = localStorage.getItem('idSeleccionado')
+const seleccionados = JSON.parse(localStorage.getItem('seleccionados'))
 const serverUrl = 'http://localhost:3000/';
+
+console.log(seleccionados);
 
 document.addEventListener('DOMContentLoaded', async () => {
     const cartaSeleccionada = await getData(`${serverUrl}marvel/${seleccionado}`);
     const arrCarta = [cartaSeleccionada]
     showCard(arrCarta, contenedor, serverUrl)
+    let nombre = document.getElementById('input-nombre');
+    let imagen = document.getElementById('input-imagen');
+    let descripcion = document.getElementById('input-descripcion');
+    let año = document.getElementById('input-año');
 })
 
 formulario.addEventListener("submit", async (e) => {

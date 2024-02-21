@@ -4,5 +4,9 @@
 
 #container {
     display: flex;
-    flex-direction: horizontal;
+    background-color: darkred;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    padding: 1rem;
 }

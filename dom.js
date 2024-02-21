@@ -50,19 +50,19 @@ const BDC = document.getElementById('dc-btn');
 //     }, 3000);
 // })
 
-document.addEventListener('DOMContentLoaded', () => {
-    productos.forEach((item, index) => {
-        // console.log(item, index);
-        contenedor.innerHTML += `
-            <div class="card" style="width: 18rem; margin: 1rem" id=${item.id}>
-                <div class="card-body mx-auto">
-                    <h5 class="card-title">${item.nombre}</h5>
-                    <p class="card-text">${item.precio}</p>
-                </div>
-            </div>
-        `
-    })
-})
+// document.addEventListener('DOMContentLoaded', () => {
+//     productos.forEach((item, index) => {
+//         // console.log(item, index);
+//         contenedor.innerHTML += `
+//             <div class="card" style="width: 18rem; margin: 1rem" id=${item.id}>
+//                 <div class="card-body mx-auto">
+//                     <h5 class="card-title">${item.nombre}</h5>
+//                     <p class="card-text">${item.precio}</p>
+//                 </div>
+//             </div>
+//         `
+//     })
+// })
 
 // contenedor.addEventListener('click', () => {
 //     console.log(localStorage.clear());  
